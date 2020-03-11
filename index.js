@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const authRoute = require('./routes/auth');
 
@@ -13,6 +15,13 @@ mongoose.connect(
   () => console.log("connected to scalar db")
 );
 
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    exposedHeaders: ["auth-token"]
+  })
+);
 app.use(express.json());
 app.use('/api/user', authRoute);
 

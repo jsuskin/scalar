@@ -2,7 +2,18 @@ const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const cors = require("cors");
+
 const { registerValidation, loginValidation } = require('../validation');
+
+router.get("/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    res.json(user);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
 
 // REGISTER
 router.post('/register', async (req, res) => {
@@ -46,7 +57,10 @@ router.post('/login', async (req, res) => {
   if(!validPass) return res.status(400).send('Incorrect password');
 
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).send(token);
+  res
+    .header("auth-token", token)
+    // .header("Access-Control-Expose-Headers", "*, Authorization")
+    .send(token);
 });
 
 module.exports = router;
