@@ -26,4 +26,16 @@ router.post("/", verify, async (req, res) => {
   }
 });
 
+router.patch("/:groupId", async (req, res) => {
+  try {
+    const updatedGroup = await Group.updateOne(
+      { _id: req.params.groupId },
+      { $push: { scales: req.body.scale } }
+    );
+    res.json(updatedGroup);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 module.exports = router;
