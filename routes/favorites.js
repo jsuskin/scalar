@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const verify = require('./verifyToken');
-// const User = require('../models/User')
-const {User, Favorite} = require('../models/index')
+const { Favorite } = require('../models/index')
 
 router.get("/", verify, async (req, res) => {
   try {
@@ -15,7 +14,7 @@ router.get("/", verify, async (req, res) => {
 router.post("/", verify, async (req, res) => {
   // const user = await User.findOne({ _id: req.user._id });
 
-  if(!req.user) return res.status(400).send({message: 'ya dun fucked up'});
+  if(!req.user) return res.status(400).send({message: 'error posting favorite'});
   const favorite = new Favorite({
     name: req.body.name,
     notes: req.body.notes,

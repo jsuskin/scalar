@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const authRoute = require('./routes/auth');
 const favoriteRoute = require('./routes/favorites');
+const groupRoute = require('./routes/groups');
 
 dotenv.config();
 
@@ -26,5 +27,6 @@ app.use(
 app.use(express.json());
 app.use('/api/user', authRoute);
 app.use('/api/favorites', favoriteRoute);
+app.use('/api/groups', groupRoute);
 
 app.listen(4000, () => console.log('scalar server running'));
