@@ -11,10 +11,25 @@ router.get("/", verify, async (req, res) => {
   }
 });
 
+router.get('/:groupId', verify, async (req, res) => {
+  try {
+    const group = await Group.findOne({ _id: req.params.groupId });
+    res.json(group);
+  } catch (err) {
+    res.json({ message: err });
+  }
+})
+
 router.post("/", verify, async (req, res) => {
   if (!req.user) return res.status(400).send({ message: "error posting group" });
   const group = new Group({
     name: req.body.name,
+    scales: [
+      {
+        name: req.body.scale.name,
+        notes: [...req.body.scale.notes]
+      }
+    ],
     _user: req.user._id
   });
 
