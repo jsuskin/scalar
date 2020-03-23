@@ -4,9 +4,10 @@
   "description": "scalar backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
-  "author": "",
+  "author": "Joshua Suskin",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.0",
