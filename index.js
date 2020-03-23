@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const PORT = process.env.PORT || 4000;
+// const PORT = process.env.PORT || 4000;
+app.set("port", process.env.PORT || 4000);
 
 const authRoute = require('./routes/auth');
 const favoriteRoute = require('./routes/favorites');
@@ -31,4 +32,9 @@ app.use('/api/user', authRoute);
 app.use('/api/favorites', favoriteRoute);
 app.use('/api/groups', groupRoute);
 
-app.listen(PORT, () => console.log('scalar server running'));
+// app.listen(PORT, () => console.log('scalar server running'));
+
+
+app.listen(app.get("port"), function() {
+  console.log("Node app is running on port", app.get("port"));
+});

@@ -4,8 +4,8 @@
   "description": "scalar backend",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Joshua Suskin",
   "license": "ISC",
