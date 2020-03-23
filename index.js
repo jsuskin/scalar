@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const PORT = process.env.PORT || 4000;
+
 const authRoute = require('./routes/auth');
 const favoriteRoute = require('./routes/favorites');
 const groupRoute = require('./routes/groups');
@@ -29,4 +31,4 @@ app.use('/api/user', authRoute);
 app.use('/api/favorites', favoriteRoute);
 app.use('/api/groups', groupRoute);
 
-app.listen(4000, () => console.log('scalar server running'));
+app.listen(PORT, () => console.log('scalar server running'));
